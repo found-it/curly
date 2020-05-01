@@ -21,10 +21,17 @@
   },
   "homepage": "https://github.com/found-it/curly#readme",
   "devDependencies": {
+    "@types/node": "^13.13.4",
     "prettier": "^2.0.5",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.8.3"
   },
-  "files": ["lib/**/*"]
+  "files": [
+    "lib/**/*"
+  ],
+  "dependencies": {
+    "axios": "^0.19.2",
+    "fs": "0.0.1-security"
+  }
 }
