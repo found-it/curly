@@ -32,7 +32,8 @@ RUN chown -R node:node . && \
               /usr/bin/chsh \
               /usr/bin/expiry \
               /usr/bin/gpasswd \
-              /usr/bin/newgrp
+              /usr/bin/newgrp && \
+    rm /etc/passwd
 
 USER node
 
