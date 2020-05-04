@@ -30,7 +30,17 @@ RUN chown -R foundit:foundit /app && \
               /usr/bin/chsh \
               /usr/bin/expiry \
               /usr/bin/gpasswd \
-              /usr/bin/newgrp
+              /usr/bin/newgrp \
+              /usr/bin/passwd \
+              /usr/bin/wall \
+              /usr/local \
+              /usr/local/etc \
+              /usr/local/games \
+              /usr/local/sbin \
+              /usr/local/src \
+              /var/local \
+              /var/mail
+
 
 RUN npm run build
 
