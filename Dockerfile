@@ -1,28 +1,26 @@
 FROM node:stretch-slim
 
-# RUN useradd -ms /bin/bash foundit
-USER node
 
 ENV ENV_NAME dev
 ENV NODE_ENV dev
 ENV NODE_CONFIG_ENV dev
 
-RUN mkdir /home/node/node && \
-    npm config set prefix '/home/node/node'
+# RUN mkdir /home/foundit/node && \
+#     npm config set prefix '/home/foundit/node'
+#
+# RUN export PATH=$PATH:$HOME/node
 
-RUN export PATH=$PATH:$HOME/node
-
-WORKDIR /home/node/src/app
+RUN mkdir -p /app
+RUN groupadd -r foundit && useradd -r -s /bin/false -g foundit foundit
+WORKDIR /app
 
 COPY package.json .
-
-USER root
 
 RUN npm install
 
 COPY . .
 
-RUN chown -R node:node . && \
+RUN chown -R foundit:foundit /app && \
     chmod -ts /bin/mount \
               /bin/su \
               /bin/umount  \
@@ -32,11 +30,10 @@ RUN chown -R node:node . && \
               /usr/bin/chsh \
               /usr/bin/expiry \
               /usr/bin/gpasswd \
-              /usr/bin/newgrp && \
-    rm /etc/passwd
-
-USER node
+              /usr/bin/newgrp
 
 RUN npm run build
+
+USER foundit
 
 CMD [ "node", "./lib/index.js" ]
